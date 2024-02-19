@@ -35,6 +35,7 @@
                 <h4>{{product.title}}</h4>
                 <p class="text-muted"><a class="text-muted" style="text-decoration: none;" href="{% url 'users:profile' product.author.username  %}">@{{product.author.username}}</a> | 25.01.2023</p>
                 <p >{{product.description|safe}}</p>
+                <p >{{product.price}}</p>
                 <div class="contact mt-4 ">
                     {% if request.user == product.author %}
                     <a class="btn btn-warning" href="{% url 'products:update' product.id %}">Edit details</a>
