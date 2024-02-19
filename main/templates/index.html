@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}
+  Bosh sahifa
+{% endblock title %}
+
+{% block content %}
+   <!-- Product Cart Start -->
+   <div class="container">
+    <div class=" w-100 mt-4">
+        <h4 class="d-block" >Recently Products</h4>
+        <div class="d-flex flex-wrap justify-content-start">
+            {% for i in products %}
+            <!-- Product Cart Start -->
+            <div class="card border border-0 shadow-sm d-inline-block ms-5 mt-5" style="width: 16.5rem;" >
+                {% if i.productimage_set.exists %}
+                <img height="200" class="card-img-top" src="{{ i.productimage_set.all.first.image.url }}" alt="">
+                {% else %}
+                <img height="200" class="card-img-top" src="products/defaultProductimage.png" alt="">
+                {% endif %}
+                <div class="card-body">
+                    <h6 class="align-center card-title">{{i.title |truncatechars:21}}</h6>
+                    <span class="center card-text"><small>$ {{i.price}}</small></span>
+                    <div class="buttons d-flex flex-wrap justify-content-between ">
+                        {% if i in saved_products %}
+                            <a href="{% url 'users:addremovesaved' i.id %}"><i class="bi bi-bookmark-fill"></i></a>
+                        {% else %}
+                            <a href="{% url 'users:addremovesaved' i.id %}"><i class="bi bi-bookmark"></i></a>
+                        {% endif%}
+                        <a href="{% url 'products:detail' i.id %}" class="btn btn-outline-primary" >Details</a>
+                    </div>
+                </div>
+            </div>  
+            <!-- Product Cart End -->
+            {% endfor %}
+            
+        </div>
+    </div>  
+</div>
+<!-- Product Cart End -->
+{% endblock content %}

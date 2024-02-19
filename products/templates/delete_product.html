@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} Delete {{product.title}}{% endblock title%}
+
+{% block content %}
+    <div class="container">
+      <div class="row mt-5">
+        <div class="col"></div>
+        <div class="col-6">
+            <h2>Do you want to delete {{product.title}} </h2>
+            <form method="post" enctype="multipart/form-data">{% csrf_token %}
+           
+                <button class="btn btn-success">Submit</button>
+                <a class="btn btn-outline-success" href="{% url 'products:detail' product.id %}">Back details</a>
+    
+        </div>
+        <div class="col"></div>
+      </div>
+    </div>
+{% endblock content %}
